@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-function Form({ onSubmit, onSort }) {
+function Form({ onSubmit, onSort, onOrder }) {
   const [input, setInput] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -24,10 +25,17 @@ function Form({ onSubmit, onSort }) {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button type="button" onClick={onSort}>
-          Sort
-        </button>
-        <button type="submit">Add book</button>
+        <div style={{ display: "flex", gap: "5px" }}>
+          <button type="button" onClick={onSort}>
+            Sort
+          </button>
+          <button type="button" onClick={onOrder}>
+            Order
+          </button>
+          <button type="submit" disabled={!input.length}>
+            Add book
+          </button>
+        </div>
       </fieldset>
     </form>
   );
